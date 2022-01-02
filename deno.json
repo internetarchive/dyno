@@ -1,0 +1,30 @@
+{
+  "lint": {
+    "files": {
+      "exclude": [
+        "www/jw/8",
+        "www/js/util/cookie.js",
+        "www/js/util/datamaps.js",
+        "www/js/util/sortnat.js",
+        "test/captions",
+        "test/identify",
+        "identify",
+
+        "/av/www/jw/8",
+        "/av/www/js/util/cookie.js",
+        "/av/www/js/util/datamaps.js",
+        "/av/www/js/util/sortnat.js",
+
+        "/app/www/jw/8/",
+        "/app/www/js/util/cookie.js",
+        "/app/www/js/util/sortnat.js"
+      ]
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": [
+        "camelcase"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "include": [
+    ".",
+  ],
+  "exclude": [
+    "www/jw/8/**",
+  ],
+  "rules": {
+    "no-floating-promises": true,
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+
+    "module": "esnext",
+    "outDir": "dist",
+    // "rootDir": "./src",
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "allowJs": true,
+  "checkJs": true,
+  "strict": true,
+  "moduleResolution": "node",
+
+  "exclude": [
+    "coverage",
+    "**/jw/8/**"
+  ]
+}

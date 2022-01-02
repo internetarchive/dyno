@@ -1,0 +1,34 @@
+#!/bin/zsh -e
+
+# For a repo that's using our container in their CI [test] phase, [lint] job,
+# we'll use any of these files from _their_ repo (that they've customized).
+# (Otherwise, use these files from us, the 'eslint' repo, located in /app/)
+cp package.json .eslintrc.cjs .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json /app/ 2>/dev/null || true
+cp /app/{package.json,.eslintrc.cjs,.eslint.await.finder.cjs,.eslint.await.finder.tsconfig.json,deno.json,tsconfig.json} .
+
+set -x
+ls -d node_modules 2>/dev/null ||  ln -s /app/node_modules
+
+deno lint -c deno.json .
+npx eslint .
+
+# Promises - look for missing `await` in callers of `async` functions
+# Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
+#            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
+npx eslint -c .eslint.await.finder.cjs . \
+  |egrep "\.js|floating-promises" \
+  |egrep -B1 floating-promises \
+  |tee .proms
+
+npx tslint --type-check -p tsconfig.json 2>&1 \
+  |fgrep -v www/jw/8/jwplayer.js \
+  |fgrep Promise \
+  |fgrep roperty \
+  |fgrep "does not exist" \
+  |tee -a .proms
+
+if [ -s .proms ]; then
+  echo "promises made, promises broken"
+  exit 1
+fi
+rm .proms
