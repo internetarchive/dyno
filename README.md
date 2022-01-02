@@ -1,4 +1,4 @@
-# Dyno - test & lint with Deno
+# Dyno 🔍 🦕 🧪 - test & lint with Deno
 
 javascript `deno test` + `eslint` container setup - useful for `deno` or `node` project CI/CD [test] phase
 

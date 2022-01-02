@@ -2,6 +2,9 @@
   "lint": {
     "files": {
       "exclude": [
+        "node_modules",
+        "web_modules",
+
         "www/jw/8",
         "www/js/util/cookie.js",
         "www/js/util/datamaps.js",
