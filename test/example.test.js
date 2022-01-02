@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import { describe, it, expect, run } from 'https://github.com/internetarchive/dyno/-/raw/main/test/test.js'
+import { describe, it, expect, run } from 'https://raw.githubusercontent.com/internetarchive/dyno/main/test/test.js'
 
 
 describe('test imports', () => {

@@ -42,7 +42,7 @@ module.exports = {
         '^https://av.prod.archive.org/js/util/cgiarg.js$',
         '^https://av.prod.archive.org/js/util/log.js$',
         '^https://av.prod.archive.org/js/util/strings.js$',
-        '^https://github.com/internetarchive/dyno/-/raw/main/test/test.js$',
+        '^https://raw.githubusercontent.com/internetarchive/dyno/main/test/test.js$',
         '^https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts$',
       ],
     }],
