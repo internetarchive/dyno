@@ -1,5 +1,8 @@
 # Dyno 🔍 🦕 - test & lint with Deno
 
+![Dino Inspecting](dyno.jpg)
+
+
 javascript `deno test` + `eslint` container setup - useful for `deno` or `node` project CI/CD [test] phase
 
 - [.gitlab-ci.yml](.gitlab-ci.yml) for example usage.  you can copy that into your gitlab-stored repo (and extend - if desired - from there) xxx
