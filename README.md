@@ -13,7 +13,8 @@ You can also run `mocha` + `expectations` like tests over your JS files.
 ```bash
 docker run --rm -it ghcr.io/internetarchive/dyno:main
 
-docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/test/test.sh'
+# lint check all JS found in your CWD
+docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
 ```
 
 ## To Do
