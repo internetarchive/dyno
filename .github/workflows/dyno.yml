@@ -15,35 +15,28 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v2
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
-      - name: Run linter
-        run: deno lint
-
-      - name: Run tests
-        run: deno test -A --unstable
-
-  test2:
+  lint:
     runs-on: ubuntu-latest
     container:
+      # xxx instead use branch name and tag for current pipeline
       image: ghcr.io/internetarchive/dyno:main
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
-    - name: Deno version
-      run: deno -V
-    - name: list
-      run: ls -l /app/test/test.sh
-    - run: pwd && ls -l /
-    - run: head -1 /etc/issue
-    - run: uname -a
+      # pwd == /__w/dyno/dyno
+    - run: /app/lint
+
+
+  # If your tests *don't* require pkgs or non-repo files from your docker build image,
+  # then you can use this nicely for testing files in your repo like 'test/something.test.js'
+  # along with a full code coverage report.
+  test:
+    runs-on: ubuntu-latest
+    container:
+      # xxx instead use branch name and tag for current pipeline
+      image: ghcr.io/internetarchive/dyno:main
+    steps:
+    - name: Setup repo
+      uses: actions/checkout@v2
+      # pwd == /__w/dyno/dyno
+    - run: /app/test/test.sh
