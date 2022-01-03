@@ -1,9 +1,8 @@
 # Dyno 🔍 🦕 - test & lint with Deno
 
+javascript `deno test` + `eslint` container setup - useful to lint or test your repo's JS for a CI/CD [test] phase
+
 ![Dino Inspecting](dyno.jpg)
-
-
-javascript `deno test` + `eslint` container setup - useful for `deno` or `node` project CI/CD [test] phase
 
 - [.gitlab-ci.yml](.gitlab-ci.yml) for example usage.  you can copy that into your gitlab-stored repo (and extend - if desired - from there) xxx
 - [lint](lint) is the actual script that runs various linters over your JS
