@@ -18,6 +18,7 @@ jobs:
   # dummy job for now since "The workflow must contain at least one job with no dependencies."
   xxx:
     runs-on: ubuntu-latest
+    steps:
     - run: head -1 /etc/issue
 
   lint:
