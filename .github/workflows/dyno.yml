@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # xxx instead use branch name and tag for current pipeline
-      image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@latest
+      image: ghcr.io/${{ github.repository }}@latest
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
