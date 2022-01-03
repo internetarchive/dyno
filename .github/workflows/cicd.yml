@@ -107,7 +107,6 @@ jobs:
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
-      # pwd == /__w/dyno/dyno
     - run: /app/lint
 
 
@@ -122,5 +121,17 @@ jobs:
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
-      # pwd == /__w/dyno/dyno
     - run: /app/test/test.sh
+
+
+
+  deploy:
+    needs: lint
+    needs: test
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/internetarchive/nomad/master
+    steps:
+    - name: Setup repo
+      uses: actions/checkout@v2
+    - run: /deploy.sh
