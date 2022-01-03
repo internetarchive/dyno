@@ -27,12 +27,23 @@ jobs:
         with:
           deno-version: v1.x
 
-      # Uncomment this step to verify the use of 'deno fmt' on each commit.
-      # - name: Verify formatting
-      #   run: deno fmt --check
-
       - name: Run linter
         run: deno lint
 
       - name: Run tests
         run: deno test -A --unstable
+
+  test2:
+    runs-on: ubuntu-latest
+    container:
+      image: internetarchive/dyno@latest
+    steps:
+    - name: Setup repo
+      uses: actions/checkout@v2
+    - name: Deno version
+      run: deno -V
+    - name: list
+      run: ls -l /app/test/test.sh
+    - run: pwd && ls -l /
+    - run: head -1 /etc/issue
+    - run: uname -a
