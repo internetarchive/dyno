@@ -16,10 +16,11 @@ on:
 
 jobs:
   lint:
+    needs: build
     runs-on: ubuntu-latest
     container:
       # xxx instead use branch name and tag for current pipeline
-      image: ghcr.io/${{ github.repository }}@latest
+      image: ghcr.io/${{ github.repository }}:$GITHUB_REF_NAME@$GITHUB_SHA
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
@@ -31,6 +32,7 @@ jobs:
   # then you can use this nicely for testing files in your repo like 'test/something.test.js'
   # along with a full code coverage report.
   test:
+    needs: build
     runs-on: ubuntu-latest
     container:
       # xxx instead use branch name and tag for current pipeline
