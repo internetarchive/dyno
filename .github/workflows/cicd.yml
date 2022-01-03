@@ -126,7 +126,7 @@ jobs:
 
 
   deploy:
-    needs: lint, test
+    needs: [lint, test]
     runs-on: ubuntu-latest
     container:
       image: registry.gitlab.com/internetarchive/nomad/master
