@@ -16,3 +16,8 @@ docker run --rm -it ghcr.io/internetarchive/dyno:main
 
 docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/test/test.sh'
 ```
+
+## To Do
+composite actions for minimizing boilerplate copying of our YAML into other repos
+- https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition/
+- https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
