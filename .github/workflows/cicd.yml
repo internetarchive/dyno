@@ -131,6 +131,5 @@ jobs:
     container:
       image: registry.gitlab.com/internetarchive/nomad/master
     steps:
-    - name: Setup repo
-      uses: actions/checkout@v2
+    - run: pwd && ls && echo xxxd
     - run: /deploy.sh
