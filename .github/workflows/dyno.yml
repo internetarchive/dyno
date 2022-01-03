@@ -15,6 +15,11 @@ on:
     branches: [main]
 
 jobs:
+  # dummy job for now since "The workflow must contain at least one job with no dependencies."
+  xxx:
+    runs-on: ubuntu-latest
+    - run: head -1 /etc/issue
+
   lint:
     needs: build
     runs-on: ubuntu-latest
