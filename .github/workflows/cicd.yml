@@ -21,7 +21,8 @@ jobs:
 
     steps:
       - uses: internetarchive/build@v1.3
-      - regpw: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          regpw: ${{ secrets.GITHUB_TOKEN }}
 
 
   # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
