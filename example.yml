@@ -13,6 +13,7 @@ jobs:
       packages: write
       id-token: write
     steps:
+      # https://github.com/internetarchive/build/blob/main/action.yml
       - uses: internetarchive/build@v1
         with:
           regpw: ${{ secrets.GITHUB_TOKEN }}
@@ -28,4 +29,5 @@ jobs:
         NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
+      # https://gitlab.com/internetarchive/nomad/-/blob/master/deploy.sh
       run: /deploy.sh
