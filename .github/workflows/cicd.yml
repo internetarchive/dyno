@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: internetarchive/build@v1
         with:
-          regpw: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
@@ -52,8 +52,8 @@ jobs:
       image: registry.gitlab.com/internetarchive/nomad/master
     steps:
     - env:
-        NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
+        BASE_DOMAIN: dev.archive.org
+        NOMAD_ADDR: https://nom.us.archive.org:4646
         NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
+        REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: /deploy.sh
