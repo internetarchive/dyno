@@ -4,12 +4,12 @@ javascript `deno test` + `eslint` container setup - useful to lint or test your 
 
 ![Dino Inspecting](dyno.jpg)
 
-- [.gitlab-ci.yml](.gitlab-ci.yml) for example usage.  you can copy that into your gitlab-stored repo (and extend - if desired - from there) xxx
+- [.github/workflows/cicd.yml](.github/workflows/cicd.yml) for example usage.  you can copy that into your github repo, using same subdir structure (and extend - if desired - from there)
 - [lint](lint) is the actual script that runs various linters over your JS
 
 You can also run `mocha` + `expectations` like tests over your JS files.
 
-## Usage examples
+## Command line usage examples
 ```bash
 docker run --rm -it ghcr.io/internetarchive/dyno:main
 

@@ -96,14 +96,16 @@ jobs:
 
 ###################################################################################################
 
-# This workflow will install Deno then run Deno lint and test.
-# For more information see: https://github.com/denoland/setup-deno
+  # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
+  #
+  # NOTE: robotic image construction would be:
+  #   image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
 
   lint:
     needs: build
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      image: ghcr.io/internetarchive/dyno:main
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
@@ -117,7 +119,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+      image: ghcr.io/internetarchive/dyno:main
     steps:
     - name: Setup repo
       uses: actions/checkout@v2
