@@ -4,6 +4,10 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+       contents: read
+       packages: write
+       id-token: write
     steps:
       - uses: internetarchive/build@v1
         with:
@@ -50,6 +54,6 @@ jobs:
     - env:
         NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
         NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ghcr_token }}
         KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
       run: /deploy.sh
