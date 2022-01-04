@@ -131,4 +131,6 @@ jobs:
     container:
       image: registry.gitlab.com/internetarchive/nomad/master
     steps:
+    - run: export NOMAD_ADDR=${{ secrets.NOMAD_ADDR }}
+    - run: export KUBE_INGRESS_BASE_DOMAIN=${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
     - run: /deploy.sh
