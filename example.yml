@@ -1,0 +1,31 @@
+# Minimal CI/CD - copy this into your repo in .github/workflows/ subdir
+# @see .github/workflows/cicd.yml  for [lint] and [test] jobs
+name: CICD
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - uses: internetarchive/build@v1.5
+        with:
+          regpw: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/internetarchive/nomad/master
+    steps:
+    - env:
+        NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
+        NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
+      run: /deploy.sh
