@@ -4,7 +4,9 @@ javascript `deno test` + `eslint` container setup - useful to lint or test your 
 
 ![Dino Inspecting](dyno.jpg)
 
-- [.github/workflows/cicd.yml](.github/workflows/cicd.yml) for example usage.  you can copy that into your github repo, using same subdir structure (and extend - if desired - from there)
+- [example.yml](example.yml) for a CI/CD pipeline.  You can copy that into your github repo into (likely new) subdir: `.github/workflows/`
+- You can extend the example with testing or otherwise
+- [.github/workflows/cicd.yml](.github/workflows/cicd.yml) shows a `test` and `lint` additional job
 - [lint](lint) is the actual script that runs various linters over your JS
 
 You can also run `mocha` + `expectations` like tests over your JS files.
