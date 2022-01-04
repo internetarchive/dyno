@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +14,6 @@ jobs:
       contents: read
       packages: write
       id-token: write
-
     steps:
       - uses: internetarchive/build@v1.5
         with:

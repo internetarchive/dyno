@@ -17,7 +17,12 @@ docker run --rm -it ghcr.io/internetarchive/dyno:main
 docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
 ```
 
-## To Do
-composite actions for minimizing boilerplate copying of our YAML into other repos
+## Uses GitHub composite Actions
+We use composite actions for minimizing boilerplate copying of our YAML into other repos.
+
+This is our 'build' action:
+- https://github.com/internetarchive/build/blob/main/action.yml
+
+Documentation:
 - https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition/
 - https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
