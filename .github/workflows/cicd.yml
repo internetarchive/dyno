@@ -133,5 +133,7 @@ jobs:
     steps:
     - env:
         NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
+        NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
         KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
-      run: export NOMAD_ADDR=${{ secrets.NOMAD_ADDR }}  KUBE_INGRESS_BASE_DOMAIN=${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}  &&  /deploy.sh
+      run: /deploy.sh
+      # run: export NOMAD_ADDR=${{ secrets.NOMAD_ADDR }}  KUBE_INGRESS_BASE_DOMAIN=${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}  &&  /deploy.sh
