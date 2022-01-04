@@ -131,5 +131,4 @@ jobs:
     container:
       image: registry.gitlab.com/internetarchive/nomad/master
     steps:
-    - run: pwd && ls && echo xxxd
     - run: /deploy.sh
