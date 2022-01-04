@@ -131,9 +131,11 @@ jobs:
     container:
       image: registry.gitlab.com/internetarchive/nomad/master
     steps:
+    - name: Setup repo
+      uses: actions/checkout@v2
     - env:
         NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
         NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
         KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: /deploy.sh
-      # run: export NOMAD_ADDR=${{ secrets.NOMAD_ADDR }}  KUBE_INGRESS_BASE_DOMAIN=${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}  &&  /deploy.sh
