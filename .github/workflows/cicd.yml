@@ -20,7 +20,7 @@ jobs:
       id-token: write
 
     steps:
-      - uses: internetarchive/build@v1.2
+      - uses: internetarchive/build@v1.3
 
 
 
