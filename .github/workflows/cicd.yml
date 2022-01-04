@@ -1,16 +1,9 @@
 name: CICD
-
-on:
-  push:
-    branches: [ '**' ]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
     steps:
       - uses: internetarchive/build@v1
         with:

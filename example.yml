@@ -1,17 +1,11 @@
-# Minimal CI/CD - copy this into your repo in .github/workflows/ subdir
-# @see .github/workflows/cicd.yml  for [lint] and [test] jobs
+# Minimal CI/CD - copy this into your repo in .github/workflows/ subdir.
+# https://github.com/internetarchive/dyno/blob/main/.github/workflows/cicd.yml  shows [test] jobs
 name: CICD
-on:
-  push:
-    branches: [ '**' ]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
     steps:
       # https://github.com/internetarchive/build/blob/main/action.yml
       - uses: internetarchive/build@v1
