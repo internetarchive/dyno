@@ -11,8 +11,7 @@ jobs:
     steps:
       - uses: internetarchive/build@v1
         with:
-#          regpw: ${{ secrets.GHCR_TOKEN }}
-          regpw: ${{ secrets.GITHUB_TOKEN }}
+          regpw: ${{ secrets.GHCR_TOKEN }}
 
 
   # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
@@ -55,6 +54,6 @@ jobs:
     - env:
         NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
         NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
       run: /deploy.sh
