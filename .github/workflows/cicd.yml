@@ -1,6 +1,3 @@
-# our docker registry image url:
-#   ghcr.io/internetarchive/dyno:main
-
 # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
 # If your tests *don't* require pkgs or non-repo files from your docker build image,
 # then you can use this nicely for testing files in your repo like 'test/something.test.js'
@@ -22,4 +19,4 @@ jobs:
           NOMAD_ADDR: 'https://nom.us.archive.org:4646'
           NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TEST_SCRIPT: '/app/lint' # xxxd && /app/test/test.sh
+#         TEST_IMAGE: 'ghcr.io/internetarchive/dyno:main'
