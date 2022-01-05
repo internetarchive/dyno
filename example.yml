@@ -14,7 +14,7 @@ jobs:
       # https://github.com/internetarchive/build/blob/main/action.yml
       - uses: internetarchive/build@v1
         with:
-          regpw: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: [build]
