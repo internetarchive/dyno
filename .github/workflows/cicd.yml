@@ -1,6 +1,3 @@
-name: CICD
-on: push
-
 # our docker registry image url:
 #   ghcr.io/internetarchive/dyno:main
 
@@ -9,6 +6,8 @@ on: push
 # then you can use this nicely for testing files in your repo like 'test/something.test.js'
 # along with a full code coverage report.
 
+name: CICD
+on: push
 jobs:
   cicd:
     runs-on: ubuntu-latest
