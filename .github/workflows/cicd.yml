@@ -18,5 +18,6 @@ jobs:
           BASE_DOMAIN: 'dev.archive.org'
           NOMAD_ADDR: 'https://nom.us.archive.org:4646'
           NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
+          NOMAD_PROD: ${{ secrets.NOMAD_PROD }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #         TEST_IMAGE: 'ghcr.io/internetarchive/dyno:main'
