@@ -14,18 +14,47 @@ jobs:
       # https://github.com/internetarchive/build/blob/main/action.yml
       - uses: internetarchive/build@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  deploy:
+
+  # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
+  #
+  # NOTE: robotic image construction would be:
+  #   image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+
+  lint:
     needs: [build]
     runs-on: ubuntu-latest
     container:
-      image: registry.gitlab.com/internetarchive/nomad/master
+      image: ghcr.io/internetarchive/dyno:main
     steps:
-    - env:
-        BASE_DOMAIN: dev.archive.org
-        NOMAD_ADDR: https://nom.us.archive.org:4646
-        NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # https://gitlab.com/internetarchive/nomad/-/blob/master/deploy.sh
-      run: /deploy.sh
+    - name: Setup repo
+      uses: actions/checkout@v2
+    - run: /app/lint
+
+
+  # If your tests *don't* require pkgs or non-repo files from your docker build image,
+  # then you can use this nicely for testing files in your repo like 'test/something.test.js'
+  # along with a full code coverage report.
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/internetarchive/dyno:main
+    steps:
+    - name: Setup repo
+      uses: actions/checkout@v2
+    - run: /app/test/test.sh
+
+
+  deploy:
+    needs: [build, lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/internetarchive/deploy/blob/main/action.yml
+      - uses: internetarchive/deploy@v1
+        with:
+          BASE_DOMAIN: 'dev.archive.org'
+          NOMAD_ADDR: 'https://nom.us.archive.org:4646'
+          NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}

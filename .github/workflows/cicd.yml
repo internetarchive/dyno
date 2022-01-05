@@ -1,59 +1,26 @@
 name: CICD
 on: push
 
+# our docker registry image url:
+#   ghcr.io/internetarchive/dyno:main
+
+# This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
+# If your tests *don't* require pkgs or non-repo files from your docker build image,
+# then you can use this nicely for testing files in your repo like 'test/something.test.js'
+# along with a full code coverage report.
+
 jobs:
-  build:
+  cicd:
     runs-on: ubuntu-latest
     permissions:
        contents: read
        packages: write
        id-token: write
     steps:
-      - uses: internetarchive/build@v1
+      - uses: internetarchive/cicd@v1
         with:
+          BASE_DOMAIN: 'dev.archive.org'
+          NOMAD_ADDR: 'https://nom.us.archive.org:4646'
+          NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-  # This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
-  #
-  # NOTE: robotic image construction would be:
-  #   image: ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-
-  lint:
-    needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/internetarchive/dyno:main
-    steps:
-    - name: Setup repo
-      uses: actions/checkout@v2
-    - run: /app/lint
-
-
-  # If your tests *don't* require pkgs or non-repo files from your docker build image,
-  # then you can use this nicely for testing files in your repo like 'test/something.test.js'
-  # along with a full code coverage report.
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/internetarchive/dyno:main
-    steps:
-    - name: Setup repo
-      uses: actions/checkout@v2
-    - run: /app/test/test.sh
-
-
-
-  deploy:
-    needs: [build, lint, test]
-    runs-on: ubuntu-latest
-    container:
-      image: registry.gitlab.com/internetarchive/nomad/master
-    steps:
-    - env:
-        BASE_DOMAIN: dev.archive.org
-        NOMAD_ADDR: https://nom.us.archive.org:4646
-        NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-        REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: /deploy.sh
+          TEST_SCRIPT: '/app/lint' # xxxd && /app/test/test.sh
