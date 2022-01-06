@@ -9,7 +9,7 @@ javascript `deno test` + `eslint` container setup - useful to lint or test your 
 - [.github/workflows/cicd.yml](.github/workflows/cicd.yml) shows `test` and `lint` additional jobs
 - [lint](lint) is the actual script that runs various linters over your JS
 
-You can also run `mocha` + `expectations` like tests over your JS files.
+You can also run `mocha` + `expectations`-like tests over your JS files.
 
 ## Command line usage examples
 ```bash
