@@ -19,10 +19,17 @@ docker run --rm -it ghcr.io/internetarchive/dyno:main
 docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
 ```
 
+## Enhanced custom CI/CD?
+You can test with an arbitrary docker image, the `dyno` docker image, split out multiple separate tests that can run in parallel, and more.
+
+See this repo as a great base for you to consider:
+- https://github.com/internetarchive/hello-js
+- https://github.com/internetarchive/hello-js/blob/main/.github/workflows/cicd.yml
+
 ## Uses GitHub composite Actions
 We use composite actions for minimizing boilerplate copying of our YAML into other repos.
 
-This is our 'cicd' action:
+This is our 'cicd' CI/CD action:
 - https://github.com/internetarchive/cicd/blob/main/action.yml
 
 Documentation:
