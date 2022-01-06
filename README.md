@@ -22,8 +22,8 @@ docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd 
 ## Uses GitHub composite Actions
 We use composite actions for minimizing boilerplate copying of our YAML into other repos.
 
-This is our 'build' action:
-- https://github.com/internetarchive/build/blob/main/action.yml
+This is our 'cicd' action:
+- https://github.com/internetarchive/cicd/blob/main/action.yml
 
 Documentation:
 - https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition/
