@@ -9,6 +9,8 @@ TOP=
 while true; do
   [ -e test ] && TOP=$(pwd)
   [ -e test ] && break
+  DIR=$(pwd)
+  [ "$DIR" = "/" ] && break
   cd ..
 done
 
