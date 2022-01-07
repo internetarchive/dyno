@@ -35,3 +35,4 @@ This is our 'cicd' CI/CD action:
 Documentation:
 - https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition/
 - https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+
