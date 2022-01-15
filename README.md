@@ -11,6 +11,20 @@ javascript `deno test` + `eslint` container setup - useful to lint or test your 
 
 You can also run `mocha` + `expectations`-like tests over your JS files.
 
+## Customizable rules and config
+Though _this repo_ includes these 6 files with some customized `eslint` rules setup and more,
+if your repo has any of these 6 files in the top of your repo, we'll use those instead.
+
+- [package.json](package.json) 
+- [.eslintrc.cjs](.eslintrc.cjs)
+- [deno.json](deno.json)
+
+These 3 are for chasing down potential `Promise` or `async`/`await` usage potential issues, and you're probably less likely to want to customize: :)
+
+- [.eslint.await.finder.cjs](.eslint.await.finder.cjs)
+- [.eslint.await.finder.tsconfig.json](.eslint.await.finder.tsconfig.json) 
+- [tsconfig.json](tsconfig.json)
+
 ## Command line usage examples
 ```bash
 docker run --rm -it ghcr.io/internetarchive/dyno:main
