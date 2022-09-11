@@ -38,7 +38,7 @@ module.exports = {
         '^https://deno.land/std/streams/conversion.ts$',
         '^https://esm.archive.org/',
         '^https://av.prod.archive.org/js/jwplayer/jwplayer.js$',
-        '^https://av.prod.archive.org/js/play8/play8.js$',
+        '^https://av.prod.archive.org/js/play.js$',
         '^https://av.prod.archive.org/js/util/cmd.js$',
         '^https://av.prod.archive.org/js/util/cgiarg.js$',
         '^https://av.prod.archive.org/js/util/log.js$',
