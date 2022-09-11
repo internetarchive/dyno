@@ -44,7 +44,6 @@ module.exports = {
         '^https://av.prod.archive.org/js/util/log.js$',
         '^https://av.prod.archive.org/js/util/strings.js$',
         '^https://raw.githubusercontent.com/internetarchive/dyno/main/test/test.js$',
-        '^https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts$',
       ],
     }],
 
