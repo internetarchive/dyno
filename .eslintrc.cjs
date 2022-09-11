@@ -31,6 +31,7 @@ module.exports = {
         '^https://deno.land/x/',
         '^https://deno.land/std/fs/mod.ts$',
         '^https://deno.land/std/http/cookie.ts$',
+        '^https://deno.land/std/http/file_server.ts$',
         '^https://deno.land/std/http/server.ts$',
         '^https://deno.land/std/io/mod.ts$',
         '^https://deno.land/std/node/fs/promises.ts$',
