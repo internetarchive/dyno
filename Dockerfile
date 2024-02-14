@@ -8,3 +8,6 @@ WORKDIR /app
 COPY . .
 
 RUN npm i
+
+# default to lint JS files in CWD
+CMD /app/lint

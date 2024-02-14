@@ -23,7 +23,7 @@ $DYNODIR/lint
 ## Using on the command line (with docker/podman)
 ```bash
 # lint check all JS found in your CWD
-docker run --rm -it --pull=always -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
+docker run --rm --pull=always -v $(pwd):/code --workdir=/code ghcr.io/internetarchive/dyno:main
 ```
 
 
