@@ -1,6 +1,6 @@
-# Dyno 🔍 🦕 - test & lint with Deno
+# Dyno 🔍 🦕 - lint & test with Deno
 
-javascript `deno test` + `eslint` container setup - useful to lint or test your repo's JS for a CI/CD [test] phase
+javascript `deno lint` + `eslint` + `deno test` container setup - useful to lint or test your repo's JS for a CI/CD [test] phase
 
 ![Dino Inspecting](dyno.jpg)
 
@@ -23,7 +23,7 @@ $DYNODIR/lint
 ## Using on the command line (with docker/podman)
 ```bash
 # lint check all JS found in your CWD
-docker run --rm -it -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
+docker run --rm -it --pull=always -v $(pwd):/code ghcr.io/internetarchive/dyno:main sh -c 'cd /code; /app/lint'
 ```
 
 
@@ -50,7 +50,7 @@ jobs:
       # https://github.com/internetarchive/dyno
       image: ghcr.io/internetarchive/dyno:main
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - run: /app/lint
 ```
 
