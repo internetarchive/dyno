@@ -32,7 +32,7 @@ npx eslint -c .eslint.await.finder.cjs "$ARGS" \
   |egrep -B1 floating-promises \
   |tee .proms
 
-npx tslint --type-check -p tsconfig.json 2>&1 \
+npx tslint --type-check -p tsconfig.json "$ARGS" 2>&1 \
   |fgrep -v www/jw/8/jwplayer.js \
   |fgrep Promise \
   |fgrep roperty \
@@ -43,3 +43,6 @@ if [ -s .proms ]; then
   echo "promises made, promises broken"
   exit 1
 fi
+
+set +x
+echo LINT SUCCESS

@@ -53,6 +53,9 @@ module.exports = {
         '^https://av.prod.archive.org/js/util/strings.js$',
         '^https://raw.githubusercontent.com/internetarchive/dyno/main/test/test.js$',
         '^https://gitlab.com/internetarchive/eslint/-/raw/main/test/test.js$',
+        // for lit SSR:
+        '^npm:lit$',
+        '^npm:@lit-labs/ssr',
       ],
     }],
 
