@@ -1,25 +1,14 @@
 {
   "lint": {
-    "files": {
-      "exclude": [
-        "node_modules",
-        "web_modules",
+    "exclude": [
+      "node_modules",
+      "web_modules",
 
-        "www/jw/8",
-        "www/js/util/datamaps.js",
-        "www/js/util/sortnat.js",
-        "test/captions",
-        "test/identify",
-        "identify",
-
-        "/av/www/jw/8",
-        "/av/www/js/util/datamaps.js",
-        "/av/www/js/util/sortnat.js",
-
-        "/app/www/jw/8/",
-        "/app/www/js/util/sortnat.js"
-      ]
-    },
+      "www/jw/8",
+      "test/captions",
+      "test/identify",
+      "identify"
+    ],
     "rules": {
       "tags": ["recommended"],
       "exclude": [

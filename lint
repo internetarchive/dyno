@@ -3,19 +3,31 @@
 # For a repo that's using our container in their CI [test] phase, [lint] job,
 # we'll use any of these files from _their_ repo (that they've customized).
 # (Otherwise, use these files from us, the 'eslint' repo, located in /app/)
-cp package.json .eslintrc.cjs .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json /app/ 2>/dev/null || true
-cp /app/{package.json,.eslintrc.cjs,.eslint.await.finder.cjs,.eslint.await.finder.tsconfig.json,deno.json,tsconfig.json} .
+
+MYDIR=${0:a:h}
+
+typeset -a REMOVES
+REMOVES=(.proms)
+for i in package.json .eslintrc.cjs .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
+  if [ ! -e $i ]; then
+    ln -s $MYDIR/$i
+    REMOVES+=($i)
+  fi
+done
+trap "{ rm -f $REMOVES; }" EXIT
+
+ARGS=.
+if [ $# -gt 0 ]; then ARGS="$@"; fi
 
 set -x
-ls -d node_modules 2>/dev/null ||  ln -s /app/node_modules
 
-deno lint -c deno.json .
-npx eslint .
+deno lint -c deno.json "$ARGS"
+npx eslint "$ARGS"
 
 # Promises - look for missing `await` in callers of `async` functions
 # Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
 #            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
-npx eslint -c .eslint.await.finder.cjs . \
+npx eslint -c .eslint.await.finder.cjs "$ARGS" \
   |egrep "\.js|floating-promises" \
   |egrep -B1 floating-promises \
   |tee .proms
@@ -31,4 +43,3 @@ if [ -s .proms ]; then
   echo "promises made, promises broken"
   exit 1
 fi
-rm .proms
