@@ -14,3 +14,5 @@ jobs:
         with:
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NOMAD_VAR_NO_DEPLOY: 'true'
+          # omit this next line -- used here so `dyno` can test itself in GitHub Actions:
+          TEST_SCRIPT: '/app/test.sh'

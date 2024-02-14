@@ -2,7 +2,7 @@
 
 # For a repo that's using our container in their CI [test] phase, [lint] job,
 # we'll use any of these files from _their_ repo (that they've customized).
-# (Otherwise, use these files from us, the 'eslint' repo, located in /app/)
+# (Otherwise, use these files from us, the 'dyno' repo, located in /app/)
 
 MYDIR=${0:a:h}
 

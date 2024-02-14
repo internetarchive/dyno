@@ -1,7 +1,9 @@
-#!/bin/bash -ex
+#!/bin/zsh -ex
 
 # runs lint then tests
 
-./lint
+MYDIR=${0:a:h}
 
-./test/test.sh
+$MYDIR/lint
+
+$MYMDIR/test/test.sh
