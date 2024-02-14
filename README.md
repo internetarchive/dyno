@@ -106,8 +106,7 @@ lint:
   # lint your repo JS code
   stage: test
   image: ghcr.io/internetarchive/dyno:main
-  script:
-    - /app/lint
+  script: /app/lint
 
 # If your tests *don't* require pkgs or non-repo files from your docker build image,
 # then you can use this nicely for testing files in your repo like 'test/something.test.js'
@@ -115,6 +114,5 @@ lint:
 test:
   stage: test
   image: ghcr.io/internetarchive/dyno:main
-  script:
-    - /app/test/test.sh
+  script: /app/test/test.sh
 ```
