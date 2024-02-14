@@ -30,6 +30,7 @@ module.exports = {
     'import/no-unresolved': [2, {
       ignore: [
         '^https://deno.land/x/',
+        '^https://deno.land/std/encoding/base64.ts$',
         '^https://deno.land/std/fs/mod.ts$',
         '^https://deno.land/std/http/cookie.ts$',
         '^https://deno.land/std/http/file_server.ts$',
@@ -52,10 +53,16 @@ module.exports = {
         '^https://av.prod.archive.org/js/util/strings.js$',
         '^https://raw.githubusercontent.com/internetarchive/dyno/main/test/test.js$',
         '^https://gitlab.com/internetarchive/eslint/-/raw/main/test/test.js$',
-        'archive.org/components/archive/archive.js',
-        'archive.org/components/details-carousel/details-carousel.js',
-        'archive.org/components/related/related.js',
       ],
+    }],
+
+    'max-len': ['error', 100, 2, {
+      ignorePattern: '#!/usr/bin/env', // only current variation from airbnb defaults
+      ignoreUrls: true,
+      ignoreComments: false,
+      ignoreRegExpLiterals: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
     }],
 
     // suuuuuuper userful
