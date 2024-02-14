@@ -12,8 +12,5 @@ jobs:
     steps:
       - uses: internetarchive/cicd@v1
         with:
-          BASE_DOMAIN: 'dev.archive.org'
-          NOMAD_TOKEN: ${{ secrets.NOMAD_TOKEN }}
-          NOMAD_TOKEN_PROD: ${{ secrets.NOMAD_TOKEN_PROD }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NOMAD_VAR_NO_DEPLOY: 'true'
