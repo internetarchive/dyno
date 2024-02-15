@@ -1,24 +1,10 @@
-# This workflow uses a `deno` binary along with `eslint` for code linting, and (optional) testing.
-# If your tests *don't* require pkgs or non-repo files from your docker build image,
-# then you can use this nicely for testing files in your repo like 'test/something.test.js'
-# along with a full code coverage report.
+# This only does a (multi-architecture) [build]
+# @see README.md for full CI/CD pipeline examples.
 
 name: CICD
 on: push
 jobs:
-  cicd:
-    runs-on: ubuntu-latest
-    permissions: { contents: read, packages: write, id-token: write }
-    steps:
-      - uses: internetarchive/cicd@v1
-        with:
-          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NOMAD_VAR_NO_DEPLOY: 'true'
-          # omit this next line -- used here so `dyno` can test itself in GitHub Actions:
-          TEST_SCRIPT: '/app/test.sh'
-
-
-  build-for-mac-arm:
+  build-for-linux-and-mac-arm:
     runs-on: ubuntu-latest
     permissions: { contents: read, packages: write, id-token: write }
     steps:
@@ -38,6 +24,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
