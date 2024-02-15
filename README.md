@@ -20,7 +20,8 @@ npm i
 $DYNODIR/lint
 ```
 
-## Using on the command line (with docker/podman)
+## Using on the command line (with docker)
+(For `podman` change `docker` to `podman` below)
 ```bash
 # lint check all JS found in your CWD
 docker run --rm --pull=always -v $(pwd):/code --workdir=/code ghcr.io/internetarchive/dyno:main

@@ -16,3 +16,28 @@ jobs:
           NOMAD_VAR_NO_DEPLOY: 'true'
           # omit this next line -- used here so `dyno` can test itself in GitHub Actions:
           TEST_SCRIPT: '/app/test.sh'
+
+
+  build-for-mac-arm:
+    runs-on: ubuntu-latest
+    permissions: { contents: read, packages: write, id-token: write }
+    steps:
+      - uses: internetarchive/build@v1
+        with:
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/arm64
+          push: true
+          tags: ghcr.io/${{ github.repository }}:${{ steps.extract_branch.outputs.branch }}
