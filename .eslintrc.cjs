@@ -46,7 +46,6 @@ module.exports = {
         '^https://cdn.skypack.dev/masto',
         '^https://offshoot.prod.archive.org/lit.js$',
         '^https://archive.org/components/related/related.js$',
-        '^https://av.prod.archive.org/js/identify.js$',
         '^https://av.prod.archive.org/js/jwplayer.js$',
         '^https://av.prod.archive.org/js/play.js$',
         '^https://av.prod.archive.org/js/playset.js$',
