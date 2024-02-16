@@ -11,6 +11,7 @@ javascript `deno lint` + `eslint` + `deno test` container setup - useful to lint
 ```sh
 DYNODIR=$(pwd)/dyno
 git clone https://github.com/internetarchive/dyno
+# setup "house" linting for any project you have checked out in your home dir:
 cd $HOME
 ln -s $DYNODIR/.eslintrc.cjs  .
 ln -s $DYNODIR/package.json   .
