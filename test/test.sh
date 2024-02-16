@@ -25,8 +25,8 @@ cd $TOP
 
 find coverage -delete 2>/dev/null || echo ''
 
-deno test -A --coverage=$TOP/coverage --unstable --location=https://archive.org --no-check "$@"
+deno test -A --coverage=$TOP/coverage --location=https://archive.org --no-check "$@"
 
 deno coverage coverage --exclude=no-exclusions --lcov >| $TOP/coverage/lcov.lcov
 
-lcov --derive-func-data                               -l $TOP/coverage/lcov.lcov
+lcov --derive-func-data --ignore-errors empty -l         $TOP/coverage/lcov.lcov
