@@ -1,8 +1,6 @@
-# This does a (multi-architecture) [build]
-# @see README.md for full CI/CD pipeline examples.
-
 on: push
 jobs:
   cicd:
-    # https://github.com/internetarchive/cicd
-    uses: internetarchive/cicd/.github/workflows/cicd-multi-arch.yml@main
+    uses: internetarchive/cicd/.github/workflows/cicd.yml@main
+    with:
+      PLATFORMS: 'linux/amd64, linux/arm64'
