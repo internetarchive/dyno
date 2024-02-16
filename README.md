@@ -33,9 +33,7 @@ docker run --rm --pull=always -v $(pwd):/code --workdir=/code ghcr.io/internetar
 To setup CI/CD `lint` testing of your repo's JS code,
 you can use this for a GitHub Actions CI/CD pipeline:
 ```yml
-name: CICD
 on: push
-
 jobs:
   build:
     runs-on: ubuntu-latest
