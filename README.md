@@ -38,12 +38,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: { contents: read, packages: write, id-token: write }
     steps:
       # https://github.com/internetarchive/build/blob/main/action.yml
       - uses: internetarchive/build@v1
-        with:
-          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
@@ -88,8 +85,8 @@ See this repo as a great base for you to consider:
 ## Uses GitHub composite Actions
 We use composite actions for minimizing boilerplate copying of our YAML into other repos.
 
-This is our 'cicd' CI/CD action:
-- https://github.com/internetarchive/cicd/blob/main/action.yml
+This is our standard 'cicd' CI/CD action:
+- https://github.com/internetarchive/cicd/
 
 Documentation:
 - https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition/
