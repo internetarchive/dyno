@@ -35,20 +35,12 @@ you can use this for a GitHub Actions CI/CD pipeline:
 ```yml
 on: push
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      # https://github.com/internetarchive/build/blob/main/action.yml
-      - uses: internetarchive/build@v1
-
   lint:
-    runs-on: ubuntu-latest
-    container:
-      # https://github.com/internetarchive/dyno
-      image: ghcr.io/internetarchive/dyno:main
-    steps:
-    - uses: actions/checkout@v4
-    - run: /app/lint
+    uses: internetarchive/dyno/.github/workflows/lint.yml@main
+
+  # optional -- but standard archive.org CI/CD build/test/deploy pipeline setup:
+  cicd:
+    uses: internetarchive/cicd/.github/workflows/cicd.yml@main
 ```
 
 You can copy that into your github repo into (likely new) subdir: `.github/workflows/cicd.yml`
