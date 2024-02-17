@@ -6,4 +6,4 @@ MYDIR=${0:a:h}
 
 $MYDIR/lint
 
-$MYMDIR/test/test.sh
+$MYDIR/test/test.sh
