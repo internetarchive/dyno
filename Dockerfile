@@ -1,6 +1,6 @@
-FROM denoland/deno:alpine
+FROM alpine
 
-RUN apk add zsh npm && \
+RUN apk add zsh npm deno && \
     # for CI [test] coverage
     apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing  lcov
 
