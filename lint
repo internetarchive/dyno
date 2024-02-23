@@ -16,23 +16,23 @@ for i in package.json .eslintrc.cjs .eslint.await.finder.cjs .eslint.await.finde
 done
 trap "{ rm -f $REMOVES; }" EXIT
 
-ARGS=.
-if [ $# -gt 0 ]; then ARGS="$@"; fi
+if [ $# -eq 0 ]; then 1=.; fi
 
 set -x
 
-deno lint -c deno.json "$ARGS"
-npx eslint "$ARGS"
+deno lint -c deno.json "$@"
+
+npx eslint "$@"
 
 # Promises - look for missing `await` in callers of `async` functions
 # Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
 #            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
-npx eslint -c .eslint.await.finder.cjs "$ARGS" \
+npx eslint -c .eslint.await.finder.cjs "$@" \
   |egrep "\.js|floating-promises" \
   |egrep -B1 floating-promises \
   |tee .proms
 
-npx tslint --type-check -p tsconfig.json "$ARGS" 2>&1 \
+npx tslint --type-check -p tsconfig.json "$@" 2>&1 \
   |fgrep -v www/jw/8/jwplayer.js \
   |fgrep Promise \
   |fgrep roperty \
