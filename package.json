@@ -10,6 +10,7 @@
     "eslint": "^8.0.0",
     "eslint-config-airbnb-base": "",
     "eslint-plugin-compat": "",
+    "eslint-plugin-html": "",
     "eslint-plugin-import": "",
     "eslint-plugin-no-floating-promise": "",
     "tslint": "",

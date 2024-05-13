@@ -6,6 +6,7 @@ module.exports = {
   plugins: [
     'compat',
     'no-floating-promise',
+    'eslint-plugin-html',
   ],
   parserOptions: {
     sourceType: 'module',
