@@ -31,6 +31,7 @@ module.exports = {
     'import/no-unresolved': [2, {
       ignore: [
         '^https://deno.land/x/',
+        '^https://deno.land/std/assert/assert.ts$',
         '^https://deno.land/std/encoding/base64.ts$',
         '^https://deno.land/std/fs/mod.ts$',
         '^https://deno.land/std/http/cookie.ts$',
