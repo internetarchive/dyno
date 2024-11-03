@@ -51,6 +51,7 @@ module.exports = {
         '^https://home.archive.org/components/related/related.js$',
         '^https://av.prod.archive.org/js/jwplayer.js$',
         '^https://av.prod.archive.org/js/play.js$',
+        '^https://av.prod.archive.org/js/time.js$',
         '^https://av.prod.archive.org/js/playset.js$',
         '^https://av.prod.archive.org/js/util/cmd.js$',
         '^https://av.prod.archive.org/js/util/cgiarg.js$',
