@@ -25,6 +25,8 @@ module.exports = {
     '**/datamaps.js',
     '**/node_modules',
     '**/web_modules',
+    '**/reveal.js',
+    'eveal.js/reveal.js',
   ],
   rules: {
     // we use deno and `import from 'https://..' is fine
