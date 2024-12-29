@@ -46,6 +46,7 @@ module.exports = {
         '^https://deno.land/std(@[0-9^.]+)*/path/mod.ts$',
         '^https://deno.land/std(@[0-9^.]+)*/testing/bdd.ts$',
         '^https://esm.archive.org/',
+        '^https://esm.ext.archive.org/',
         '^https://cdn.skypack.dev/sinon@v15.0.2',
         '^https://cdn.skypack.dev/masto',
         '^https://offshoot.prod.archive.org/lit.js$',
