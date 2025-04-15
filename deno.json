@@ -5,6 +5,8 @@
       "web_modules",
 
       "www/jw/8",
+      "www/cast/www.gstatic.com/",
+
       "test/captions",
       "test/identify",
       "eveal.js",

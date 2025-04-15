@@ -22,6 +22,7 @@ module.exports = {
   ignorePatterns: [
     '**/*.min.js',
     '**/jw/8/',
+    '**/www.gstatic.com/',
     '**/datamaps.js',
     '**/node_modules',
     '**/web_modules',
