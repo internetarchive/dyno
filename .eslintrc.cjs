@@ -50,7 +50,6 @@ module.exports = {
         '^https://esm.ext.archive.org/',
         '^https://cdn.skypack.dev/sinon@v15.0.2',
         '^https://cdn.skypack.dev/masto',
-        '^https://offshoot.prod.archive.org/lit.js$',
         '^https://archive.org/components/related/related.js$',
         '^https://home.archive.org/components/related/related.js$',
         '^https://av.archive.org/js/jwplayer.js$',
