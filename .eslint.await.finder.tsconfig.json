@@ -4,6 +4,7 @@
   ],
   "exclude": [
     "www/jw/8/**",
+    "www/build/**",
   ],
   "rules": {
     "no-floating-promises": true,

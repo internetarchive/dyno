@@ -18,6 +18,7 @@
 
   "exclude": [
     "coverage",
+    "**/www/build/**",
     "**/jw/8/**"
   ]
 }
