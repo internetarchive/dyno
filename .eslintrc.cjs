@@ -51,7 +51,9 @@ module.exports = {
         '^https://cdn.skypack.dev/sinon@v15.0.2',
         '^https://cdn.skypack.dev/masto',
         '^https://archive.org/components/related/related.js$',
-        '^https://home.archive.org/components/related/related.js$',
+        '^https://archive.org/components/more-facets/more-facets.js$', // xxx temporary until offshoot FTS
+        '^https://archive.org/components/search/facets.js$', // xxx temporary until offshoot FTS
+        '^https://archive.org/components/timegraf/timegraf.js$', // xxx temporary until offshoot FTS
         '^https://av.archive.org/js/jwplayer.js$',
         '^https://av.archive.org/js/play.js$',
         '^https://av.archive.org/js/player.js$',
