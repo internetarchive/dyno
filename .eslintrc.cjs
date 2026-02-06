@@ -35,6 +35,7 @@ module.exports = {
       ignore: [
         '^https://deno.land/x/',
         '^https://deno.land/std(@[0-9^.]+)*/assert/assert.ts$',
+        '^https://deno.land/std(@[0-9^.]+)*/crypto/mod.ts$',
         '^https://deno.land/std(@[0-9^.]+)*/encoding/base64.ts$',
         '^https://deno.land/std(@[0-9^.]+)*/fs/mod.ts$',
         '^https://deno.land/std(@[0-9^.]+)*/http/cookie.ts$',
