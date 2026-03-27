@@ -82,9 +82,8 @@ This is our standard 'cicd' CI/CD action:
 ## GitLab repos
 If your repo is using GitLab, you can create a `.gitlab-ci.yml` file at the top of your repo like this:
 ```yml
-include:
-  # standard archive.org CI/CD setup
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+# standard archive.org CI/CD setup
+include: https://nomad.archive.org/ci.yml
 
 lint:
   # lint your repo JS code
