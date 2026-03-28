@@ -136,6 +136,9 @@ export default [
       }],
       semi: ['error', 'never', { beforeStatementContinuationChars: 'always' }],
 
+      'no-cond-assign': ['error', 'always'],
+      'no-promise-executor-return': 'error',
+      'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
 
       //
       //
