@@ -3,9 +3,25 @@
     "exclude": [
       "node_modules",
       "web_modules",
+      "**/*.min.js",
 
-      "www/jw/8",
       "www/cast/www.gstatic.com/",
+
+      "__JWPLAYER-STUFF:__",
+      "www/jw/",
+      "www/jw/head/",
+      "www/jw/8/",
+      "www/jw/8.2.3/",
+      "www/jw/8.8.2/",
+      "jwplayer.controls.js",
+      "jwplayer.core.js",
+      "jwplayer.core.*",
+      "polyfills.webvtt.js",
+      "vttparser.js",
+
+      "**/lib/binsearch/",
+      "**/lib/extracTS/",
+      "**/lib/ffmpeg/",
 
       "test/captions",
       "test/identify",
