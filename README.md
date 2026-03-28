@@ -13,7 +13,7 @@ DYNODIR=$(pwd)/dyno
 git clone https://github.com/internetarchive/dyno
 # setup "house" linting for any project you have checked out in your home dir:
 cd $HOME
-ln -s $DYNODIR/.eslintrc.cjs  .
+ln -s $DYNODIR/eslint.config.js  .
 ln -s $DYNODIR/package.json   .
 npm i
 # cd [to some project with JS]
@@ -55,12 +55,12 @@ Though _this repo_ includes these 6 files with some customized `eslint` rules se
 if your repo has any of these 6 files in the top of your repo, we'll use those instead.
 
 - [package.json](package.json)
-- [.eslintrc.cjs](.eslintrc.cjs)
+- [eslint.config.js](eslint.config.js)
 - [deno.json](deno.json)
 
 These 3 are for chasing down potential `Promise` or `async`/`await` usage potential issues, and you're probably less likely to want to customize: :)
 
-- [.eslint.await.finder.cjs](.eslint.await.finder.cjs)
+- [.eslint.await.finder.js](.eslint.await.finder.js)
 - [.eslint.await.finder.tsconfig.json](.eslint.await.finder.tsconfig.json)
 - [tsconfig.json](tsconfig.json)
 
