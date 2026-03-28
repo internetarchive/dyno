@@ -8,7 +8,7 @@ MYDIR=${0:a:h}
 
 typeset -a REMOVES
 REMOVES=(.proms)
-for i in package.json .eslintrc.cjs .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
+for i in package.json eslint.config.js .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
   if [ ! -e $i ]; then
     ln -s $MYDIR/$i
     REMOVES+=($i)
