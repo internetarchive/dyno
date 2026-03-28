@@ -8,7 +8,7 @@ MYDIR=${0:a:h}
 
 typeset -a REMOVES
 REMOVES=(.proms)
-for i in package.json eslint.config.js .eslint.await.finder.cjs .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
+for i in package.json eslint.config.js .eslint.await.finder.js .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
   if [ ! -e $i ]; then
     ln -s $MYDIR/$i
     REMOVES+=($i)
@@ -27,7 +27,7 @@ npx eslint "$@"
 # Promises - look for missing `await` in callers of `async` functions
 # Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
 #            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
-npx eslint -c .eslint.await.finder.cjs "$@" \
+npx eslint -c .eslint.await.finder.js "$@" \
   |egrep "\.js|floating-promises" \
   |egrep -B1 floating-promises \
   |tee .proms
