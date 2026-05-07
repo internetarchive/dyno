@@ -5,9 +5,7 @@
       "web_modules",
       "**/*.min.js",
 
-      "www/cast/www.gstatic.com/",
-
-      "__JWPLAYER-STUFF:__",
+      "__JWPLAYER-STUFF__",
       "www/jw/",
       "www/jw/head/",
       "www/jw/8/",
@@ -19,14 +17,25 @@
       "polyfills.webvtt.js",
       "vttparser.js",
 
+      "__AV_STUFF__",
+      "www/cast/www.gstatic.com/",
       "**/lib/binsearch/",
       "**/lib/extracTS/",
       "**/lib/ffmpeg/",
-
       "test/captions",
       "test/identify",
-      "eveal.js",
-      "identify"
+
+      "__PETABOX_STUFF__",
+      "**/components/bookreader/",
+      "**/components/npm/",
+      "**/components/editxml/jquery.json-ui.js",
+      "**/components/uploader/jquery.sprintf.js",
+      "**/components/uploader/jquery.wysiwyg.js",
+      "**/components/uploader/wysiwyg.link.js",
+
+      "__MISC_STUFF__",
+      "**/eveal.js",
+      "**/reveal.js/**"
     ],
     "rules": {
       "tags": ["recommended"],
