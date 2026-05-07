@@ -1,5 +1,4 @@
 // this is <only> use to find missing `await` in front of calling `async` functions
-// eslint-disable-next-line import/no-unresolved
 import tseslint from 'typescript-eslint'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
