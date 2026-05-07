@@ -6,10 +6,11 @@
   ],
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "eslint": "^9.0.0",
+    "@stylistic/eslint-plugin": "^5.0.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-compat": "",
     "eslint-plugin-html": "",
-    "eslint-plugin-import": "",
+    "eslint-plugin-import-x": "^4.16.2",
     "eslint-plugin-no-floating-promise": "",
     "globals": "",
     "typescript-eslint": ""

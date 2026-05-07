@@ -28,15 +28,15 @@ npx eslint "$@"
 # Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
 #            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
 npx eslint -c .eslint.await.finder.js "$@" \
-  |egrep "\.js|floating-promises" \
-  |egrep -B1 floating-promises \
+  |grep -E "\.js|floating-promises" \
+  |grep -E -B1 floating-promises \
   |tee .proms
 
 npx tslint --type-check -p tsconfig.json "$@" 2>&1 \
-  |fgrep -v www/jw/8/jwplayer.js \
-  |fgrep Promise \
-  |fgrep roperty \
-  |fgrep "does not exist" \
+  |grep -F -v www/jw/8/jwplayer.js \
+  |grep -F Promise \
+  |grep -F roperty \
+  |grep -F "does not exist" \
   |tee -a .proms
 
 if [ -s .proms ]; then

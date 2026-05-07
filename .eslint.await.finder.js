@@ -4,7 +4,6 @@ import tseslint from 'typescript-eslint'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default tseslint.config({

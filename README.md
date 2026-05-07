@@ -99,3 +99,29 @@ test:
   image: ghcr.io/internetarchive/dyno:main
   script: /app/test/test.sh
 ```
+
+### Must Haves:
+* dont love no column alignment, and it would thrash 2 big JS repos.  but *could* potentially live w/ it
+* snake case needs to be allowed everywhere (not restricted)
+* import `.js` files with their extensions has to be ok
+* no-param-assign (on the maybe list)
+* no-const-assign (should be on the list, but...🙃??)
+
+* prefer-template
+* no-template-curly-in-string
+* no-shadow
+* no-unsed-vars
+* prefer-const
+* eqeqeq
+* no-dupe-args
+* no-dupe-keys
+* no-duplicate-case
+* arrow-body-style
+* arrow-parens
+* no-duplicate-imports
+* no-this-before-super
+* prefer-arrow-callback
+* comma-dangle
+* no-tabs
+* import/no-extraneous-dependencies
+* import/no-duplicates
