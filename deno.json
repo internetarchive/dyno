@@ -1,7 +1,28 @@
 {
+  "compilerOptions": {
+    "checkJs": true
+  },
+
+  "exclude": [
+    "eslint.config.js",
+    "node_modules",
+    "test/captions",
+    "test/identify",
+    "test/should-fail",
+    "**/vendor/**",
+  ],
+  "imports": {
+    // dormant in av repo - add via `npm add puppeteer` if needed in prod
+    // (these are just for `deno check` in `lint` ..
+    "puppeteer": "data:application/javascript,export default {}",
+    "@playwright/test": "data:application/javascript,export default {}",
+  },
+
+
   "lint": {
     "exclude": [
       "node_modules",
+      "vendor",
       "web_modules",
       "**/*.min.js",
 
@@ -35,7 +56,7 @@
 
       "__MISC_STUFF__",
       "**/eveal.js",
-      "**/reveal.js/**"
+      "**/reveal.js/**",
     ],
     "rules": {
       "tags": ["recommended"],

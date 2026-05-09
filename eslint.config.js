@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import process from 'node:process'
 
+import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
 import compat from 'eslint-plugin-compat'
 import html from 'eslint-plugin-html'
@@ -9,6 +10,7 @@ import importPlugin from 'eslint-plugin-import-x'
 import globals from 'globals'
 
 const requireSemis = /\/petabox\d*(\/|$)/.test(process.cwd())
+const checkPromises = !!process.env.LINT_PROMISES
 
 export default [
   {
@@ -16,6 +18,7 @@ export default [
     ignores: [
       '**/*.min.js',
       '**/node_modules/**',
+      '**/vendor/**',
       '**/web_modules/**',
 
       // av repo stuff
@@ -40,6 +43,9 @@ export default [
       '**/components/uploader/jquery.sprintf.js',
       '**/components/uploader/jquery.wysiwyg.js',
       '**/components/uploader/wysiwyg.link.js',
+
+      // lint negative tests -- intentionally bad code
+      '**/test/should-fail/**',
 
       // markdown slide decks stuff
       '**/reveal.js/**',
@@ -217,4 +223,21 @@ export default [
       'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
     },
   },
+
+  ...(checkPromises
+    ? [{
+      languageOptions: {
+        parser: tseslint.parser,
+        parserOptions: {
+          projectService: true,
+          tsconfigRootDir: import.meta.dirname,
+        },
+      },
+      plugins: { '@typescript-eslint': tseslint.plugin },
+      rules: {
+        '@typescript-eslint/no-floating-promises': 'error',
+        'no-floating-promise/no-floating-promise': 'off',
+      },
+    }]
+    : []),
 ]

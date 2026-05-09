@@ -51,19 +51,13 @@ You can also run `mocha` + `expectations`-like tests over your JS files.
 
 
 ## Customizable rules and config
-Though _this repo_ includes these 6 files with some customized `eslint` rules setup and more,
-if your repo has any of these 6 files in the top of your repo, we'll use those instead.
+Though _this repo_ includes these 4 files with some customized `eslint` rules setup and more,
+if your repo has any of these 4 files in the top of your repo, we'll use those instead.
 
 - [package.json](package.json)
 - [eslint.config.js](eslint.config.js)
 - [deno.json](deno.json)
-
-These 3 are for chasing down potential `Promise` or `async`/`await` usage potential issues, and you're probably less likely to want to customize: :)
-
-- [.eslint.await.finder.js](.eslint.await.finder.js)
-- [.eslint.await.finder.tsconfig.json](.eslint.await.finder.tsconfig.json)
 - [tsconfig.json](tsconfig.json)
-
 
 ## Enhanced custom CI/CD?
 You can test with an arbitrary docker image, the `dyno` docker image, split out multiple separate tests that can run in parallel, and more.

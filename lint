@@ -7,8 +7,8 @@
 MYDIR=${0:a:h}
 
 typeset -a REMOVES
-REMOVES=(.proms)
-for i in package.json eslint.config.js .eslint.await.finder.js .eslint.await.finder.tsconfig.json deno.json tsconfig.json node_modules; do
+REMOVES=()
+for i in package.json eslint.config.js deno.json tsconfig.json node_modules; do
   if [ ! -e $i ]; then
     ln -s $MYDIR/$i
     REMOVES+=($i)
@@ -18,31 +18,25 @@ trap "{ rm -f $REMOVES; }" EXIT
 
 if [ $# -eq 0 ]; then 1=.; fi
 
-set -x
+( set -x; deno lint -c deno.json "$@" )
 
-deno lint -c deno.json "$@"
+( set -x; LINT_PROMISES=1 npx eslint "$@" )
 
-npx eslint "$@"
+if [ -e vendor ]; then
+  if [ -n "$(find vendor -mindepth 1 -type f -mtime +21 -print -quit 2>/dev/null)" ]; then
+    ecno
+    echo "vendor/ HAS FILES > 3 WEEKS OLD -- CONSIDER REBUILDING ENTIRELY:"
+    echo "  find vendor -mindepth 1 -delete  &&  deno check --allow-import --vendor ."
+    echo
+  fi
 
-# Promises - look for missing `await` in callers of `async` functions
-# Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
-#            ^^ cheap approximate:  git grep -P 'await[^)]+\)\.'
-npx eslint -c .eslint.await.finder.js "$@" \
-  |grep -E "\.js|floating-promises" \
-  |grep -E -B1 floating-promises \
-  |tee .proms
-
-npx tslint --type-check -p tsconfig.json "$@" 2>&1 \
-  |grep -F -v www/jw/8/jwplayer.js \
-  |grep -F Promise \
-  |grep -F roperty \
-  |grep -F "does not exist" \
-  |tee -a .proms
-
-if [ -s .proms ]; then
-  echo "promises made, promises broken"
-  exit 1
+  # Promises - look for missing `await` in callers of `async` functions
+  # Promises - look for missing parens, eg: `await exe('ls').trim()` => `(await exe('ls')).trim()`
+  echo deno check --allow-import --vendor "$@"
+  if ( deno check --allow-import --vendor "$@" ) 2>&1 \
+      |grep -EA4 "Did you forget to use 'await'|does not exist on type 'Promise<any>'"; then
+    echo "promises made, promises broken"; exit 1
+  fi
 fi
 
-set +x
 echo LINT SUCCESS

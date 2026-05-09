@@ -4,3 +4,11 @@ jobs:
     uses: internetarchive/cicd/.github/workflows/cicd.yml@main
     with:
       PLATFORMS: 'linux/amd64,linux/arm64'
+
+  lint-test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/internetarchive/dyno:main
+    steps:
+    - uses: actions/checkout@v4
+    - run: /app/test/lint-test

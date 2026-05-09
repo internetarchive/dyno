@@ -1,0 +1,45 @@
+#!/bin/zsh -e
+
+MYDIR=${0:a:h}
+cd $MYDIR/..
+
+nok=0
+nfail=0
+
+must_fail() {
+  local desc=$1; shift
+  if "$@" 2>/dev/null; then
+    echo "FAIL: $desc -- expected lint failure but got success"; nfail=$((nfail+1))
+  else
+    echo "OK: $desc caught correctly"; nok=$((nok+1))
+  fi
+}
+
+
+for TEST in test/should-fail/*.js; do
+  echo TEST=$TEST
+
+  if grep -q 'lint-test: deno-check-only' $TEST; then
+    echo "(skipping eslint -- deno-check-only)"
+
+    if ( deno check --allow-import --vendor --config test/should-fail/deno.json $TEST ) 2>&1 \
+        | grep -EA4 "Did you forget to use 'await'|does not exist on type 'Promise"; then
+      echo "OK: TEST=$TEST deno-check caught correctly"; nok=$((nok+1))
+    else
+      echo "FAIL: TEST=$TEST deno-check -- expected error, found none"; nfail=$((nfail+1))
+    fi
+  else
+    if [ $TEST = test/should-fail/fetch2.js ]; then
+      # clean without LINT_PROMISES, caught with it
+      npx eslint --no-ignore $TEST  &&  nok=$((nok+1))
+    else
+      must_fail "TEST=$TEST"                                     npx eslint --no-ignore $TEST
+    fi
+    must_fail   "TEST=$TEST LINT_PROMISES=1" env LINT_PROMISES=1 npx eslint --no-ignore $TEST
+  fi
+
+  echo "$nok passed, $nfail failed"
+  echo '========================================================'
+done
+
+(( nfail == 0 ))
