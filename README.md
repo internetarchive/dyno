@@ -102,7 +102,6 @@ test:
 * no-const-assign (should be on the list, but...🙃??)
 
 * prefer-template
-* no-template-curly-in-string
 * no-shadow
 * no-unsed-vars
 * prefer-const

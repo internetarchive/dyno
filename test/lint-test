@@ -6,14 +6,46 @@ cd $MYDIR/..
 nok=0
 nfail=0
 
+must_fail_eslint() {
+  local desc=$1; shift
+  if echo "$@" | eslint --stdin --stdin-filename test.js 2>&1 >| log; then
+    echo "FAIL: $desc -- expected lint failure but got success"
+    nfail=$((nfail+1))
+    cat log
+  else
+    if grep -q "$desc" log; then
+      echo "OK: $desc caught correctly"
+      nok=$((nok+1))
+    else
+      nfail=$((nfail+1))
+      cat log
+    fi
+  fi
+  rm -f log
+}
+
 must_fail() {
   local desc=$1; shift
   if "$@" 2>/dev/null; then
-    echo "FAIL: $desc -- expected lint failure but got success"; nfail=$((nfail+1))
+    echo "FAIL: $desc -- expected lint failure but got success"
+    nfail=$((nfail+1))
   else
-    echo "OK: $desc caught correctly"; nok=$((nok+1))
+    echo "OK: $desc caught correctly"
+    nok=$((nok+1))
   fi
 }
+
+must_fail_eslint  prefer-const  'let x = 3; alert(x)'
+must_fail_eslint  @stylistic/quotes  'const x = "3"; alert(x)'
+must_fail_eslint  @stylistic/quotes  'const x = `no dollar-curly in template`'
+must_fail_eslint  no-shadow  $'const x = 3; alert(x)\n{ const x = 4; alert(x) }'
+must_fail_eslint  prefer-template  "const n = 'world'; alert('hello ' + n)"
+must_fail_eslint  no-unused-vars  'const x = 3'
+must_fail_eslint  eqeqeq  'alert(3 == 4)'
+must_fail_eslint  arrow-body-style  'alert([1,2].map(x => { return x * 2 }))'
+must_fail_eslint  arrow-parens  'setTimeout(x => alert(x), 100)'
+must_fail_eslint  prefer-arrow-callback  'setTimeout(function() { alert(33) }, 10)'
+must_fail_eslint  comma-dangle  $'const x = {\na: 3\n}'
 
 
 for TEST in test/should-fail/*.js; do
