@@ -12,4 +12,5 @@ jobs:
       image: ghcr.io/internetarchive/dyno:main
     steps:
     - uses: actions/checkout@v4
+    - run: ln -s /app/node_modules node_modules
     - run: test/lint-test
