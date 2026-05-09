@@ -8,7 +8,7 @@ nfail=0
 
 must_fail_eslint() {
   local desc=$1; shift
-  if echo "$@" | eslint --stdin --stdin-filename test.js 2>&1 >| log; then
+  if echo "$@" | npx eslint --stdin --stdin-filename test.js 2>&1 >| log; then
     echo "FAIL: $desc -- expected lint failure but got success"
     nfail=$((nfail+1))
     cat log
