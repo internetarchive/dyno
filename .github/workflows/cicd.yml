@@ -6,9 +6,10 @@ jobs:
       PLATFORMS: 'linux/amd64,linux/arm64'
 
   lint-test:
+    needs: cicd
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/internetarchive/dyno:main
     steps:
     - uses: actions/checkout@v4
-    - run: /app/test/lint-test
+    - run: test/lint-test
