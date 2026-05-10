@@ -27,9 +27,9 @@ const IGNORES = [
   // av repo stuff
   '**/www.gstatic.com/**',
   '**/datamaps.js',
-  '**/av/www/build/**',
-  '**/av/test/captions/**/*.ts',
-  '**/av/test/identify/**/*.ts',
+  '**/www/build/**/*.js',
+  '**/test/captions/**/*.ts',
+  '**/test/identify/**/*.ts',
 
   // jwplayer stuff
   '**/www/jw/**',
