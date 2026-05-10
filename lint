@@ -18,7 +18,10 @@ trap "{ rm -f $REMOVES; }" EXIT
 
 if [ $# -eq 0 ]; then 1=.; fi
 
-( set -x; deno lint -c deno.json "$@" )
+# Skip deno lint for Vite/Node repos (xxx for now) — they don't use deno-style imports
+if [ ! -e vite.config.ts ] && [ ! -e vite.config.js ]; then
+  ( set -x; deno lint -c deno.json "$@" )
+fi
 
 ( set -x; LINT_PROMISES=1 npx eslint "$@" )
 
