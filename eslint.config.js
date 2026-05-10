@@ -1,6 +1,7 @@
 import js from '@eslint/js'
 import process from 'node:process'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { join, relative } from 'node:path'
 
 import tseslint from 'typescript-eslint'
 import stylistic from '@stylistic/eslint-plugin'
@@ -48,6 +49,10 @@ const IGNORES = [
   '**/components/uploader/jquery.sprintf.js',
   '**/components/uploader/jquery.wysiwyg.js',
   '**/components/uploader/wysiwyg.link.js',
+
+  // offshoot stuff
+  '**/coverage/',
+  '**/dist/offshoot_assets/',
 
   // lint negative tests -- intentionally bad code
   '**/test/should-fail/**',
@@ -245,8 +250,13 @@ export default (async () => {
         languageOptions: {
           parser: tseslint.parser,
           parserOptions: {
-            projectService: true,
-            tsconfigRootDir: import.meta.dirname,
+            projectService: {
+              // Scan actual .ts files, skip dirs already in tsconfig — avoids both the
+              // "not found by project service" error AND the "found in both" conflict error.
+              allowDefaultProject: buildAllowDefaultProject(),
+              maximumDefaultProjectFileMatchCount_THIS_WILL_SLOW_DOWN_LINTING: 1024,
+            },
+            tsconfigRootDir: process.cwd(),
           },
         },
         plugins: { '@typescript-eslint': tseslint.plugin },
@@ -328,4 +338,41 @@ function buildTsConfigs() {
       },
     },
   ]
+}
+
+
+// Build allowDefaultProject patterns by scanning actual .ts files in the repo.
+// Reads tsconfig.json to find top-level dirs it covers, then walks everything else,
+// collecting unique parent dirs of .ts files — one `<dir>/*.ts` pattern per dir.
+// This avoids both "not found by project service" AND "found in both" conflict errors.
+function buildAllowDefaultProject() {
+  const cwd = process.cwd()
+  const SKIP = new Set(['node_modules', '.git', 'vendor', 'dist', 'coverage'])
+
+  try {
+    const raw = readFileSync(join(cwd, 'tsconfig.json'), 'utf8')
+      .replace(/\/\*[\s\S]*?\*\//g, '')  // block comments
+      .replace(/\/\/.*/g, '')             // line comments
+      .replace(/,(\s*[}\]])/g, '$1')      // trailing commas (tsconfig is JSON5, not strict JSON)
+    for (const inc of (JSON.parse(raw).include ?? []))
+      SKIP.add(inc.replace(/^\.\//, '').split('/')[0].replace(/[*?].*$/, ''))
+  } catch { /* no tsconfig — no dirs to skip */ }
+
+  const dirs = new Set()
+  const walk = (dir) => {
+    let entries
+    try {
+      entries = readdirSync(dir, { withFileTypes: true })
+    } catch { return }
+    for (const e of entries) {
+      if (e.isDirectory()) {
+        if (!SKIP.has(e.name) && !e.name.startsWith('.')) walk(join(dir, e.name))
+      } else if (e.name.endsWith('.ts') && !e.name.endsWith('.d.ts')) {
+        const rel = relative(cwd, dir)
+        dirs.add(rel ? `${rel}/*.ts` : '*.ts')
+      }
+    }
+  }
+  walk(cwd)
+  return [...dirs]
 }
