@@ -236,7 +236,11 @@ export default (async () => {
       },
 
       settings: {
-        browsers: ['> 1%', 'not op_mini all'], // for eslint-plugin-compat
+        browsers: [ // for eslint-plugin-compat
+          'defaults',
+          'not op_mini all', // defaults means last 2 versions of *everything*; but op_mini is rare
+          'not kaios 2.5', // rare cheap phone (typically) browser
+        ],
       },
 
       rules: DEFAULT_RULES,
