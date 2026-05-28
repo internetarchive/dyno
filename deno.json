@@ -7,8 +7,9 @@
     "checkJs": true
   },
 
+  "license": "AGPL-3.0-or-later",
+
   "exclude": [
-    "eslint.config.js",
     "node_modules",
     "test/captions",
     "test/identify",
@@ -59,6 +60,7 @@
       "**/components/uploader/wysiwyg.link.js",
 
       "__MISC_STUFF__",
+      "eslint.config.js",
       "**/eveal.js",
       "**/reveal.js/**",
     ],
