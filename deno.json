@@ -1,5 +1,5 @@
 {
-  "name": "dyno",
+  "name": "@internetarchive/dyno",
   "exports": "./eslint.config.js",
   "version": "1.0.0",
 
