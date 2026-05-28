@@ -1,5 +1,7 @@
 {
   "name": "dyno",
+  "exports": "./eslint.config.js",
+
   "compilerOptions": {
     "checkJs": true
   },
