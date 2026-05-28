@@ -12,5 +12,6 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v6
+      - run: npm install
       - name: Publish package
         run: npx jsr publish
