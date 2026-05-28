@@ -1,4 +1,5 @@
 {
+  "name": "dyno",
   "compilerOptions": {
     "checkJs": true
   },
