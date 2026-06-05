@@ -65,6 +65,7 @@ const DEFAULT_RULES = {
   // we use deno in repos, and `import from 'https://..' is fine
   'import/no-unresolved': [2, {
     ignore: [
+      'puppeteer',
       '^https://deno.land/x/',
       '^https://deno.land/std(@[0-9^.]+)*/assert/assert.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/crypto/mod.ts$',
