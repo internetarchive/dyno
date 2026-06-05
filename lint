@@ -27,7 +27,7 @@ fi
 
 if [ -e vendor ]; then
   if [ -n "$(find vendor -mindepth 1 -type f -mtime +21 -print -quit 2>/dev/null)" ]; then
-    ecno
+    echo
     echo "vendor/ HAS FILES > 3 WEEKS OLD -- CONSIDER REBUILDING ENTIRELY:"
     echo "  find vendor -mindepth 1 -delete  &&  deno check --allow-import --vendor ."
     echo
