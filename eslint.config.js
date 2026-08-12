@@ -67,6 +67,7 @@ const DEFAULT_RULES = {
     ignore: [
       'puppeteer',
       '^https://deno.land/x/',
+      '^https://cdn.jsdelivr.net/gh/internetarchive/',
       '^https://deno.land/std(@[0-9^.]+)*/assert/assert.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/crypto/mod.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/encoding/base64.ts$',
