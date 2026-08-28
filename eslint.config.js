@@ -71,6 +71,7 @@ const DEFAULT_RULES = {
       '^https://deno.land/std(@[0-9^.]+)*/assert/assert.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/crypto/mod.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/encoding/base64.ts$',
+      '^https://deno.land/std(@[0-9^.]+)*/expect/mod.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/fs/mod.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/http/cookie.ts$',
       '^https://deno.land/std(@[0-9^.]+)*/http/file_server.ts$',
