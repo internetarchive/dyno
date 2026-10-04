@@ -23,7 +23,12 @@ if [ ! -e vite.config.ts ] && [ ! -e vite.config.js ]; then
   ( set -x; deno lint -c deno.json "$@" )
 fi
 
-( set -x; LINT_PROMISES=1 npx eslint "$@" )
+# if eslint.config.js is a symlink to us from another repo, we can ignore it.
+# if it's a real file: if we're linting our own repo - lint it;
+# if another repo has its own eslint.config.js - then we should lint it.
+IGNORES=()
+(( ${REMOVES[(Ie)eslint.config.js]} )) && IGNORES=(--ignore-pattern eslint.config.js)
+( set -x; LINT_PROMISES=1 npx eslint $IGNORES "$@" )
 
 if [ -e vendor ]; then
   if [ -n "$(find vendor -mindepth 1 -type f -mtime +21 -print -quit 2>/dev/null)" ]; then
